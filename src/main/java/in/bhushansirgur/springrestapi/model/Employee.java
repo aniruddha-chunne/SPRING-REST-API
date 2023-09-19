@@ -54,7 +54,24 @@ public class Employee {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-
 	
 
 }
+
+
+//use mydb;
+//
+//create table tbl_employee
+//(
+//	id int not null auto_increment primary key,
+//    age int not null,
+//    name varchar(255) not null,
+//    location varchar(255) not null,
+//    email varchar(255),
+//    department varchar(255)
+//);
+//
+//insert into employee (age, name, email, location, department)
+//values
+//( 18, "aniruddha" , "achunne3@gmail.com" , "Nagpur", "electronics" ),
+//( 20, "Ajinkya" , "ajinkya@gmail.com" , "Pune", "Medical Representative" )
