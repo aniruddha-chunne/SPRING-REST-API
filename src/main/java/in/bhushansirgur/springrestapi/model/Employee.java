@@ -21,13 +21,14 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity()
+//@Entity()
+@jakarta.persistence.Entity()
 @Table(name = "tbl_employee")
 public class Employee {
 
 //	@JsonProperty("Full Name")
 	
-	@Id
+	@jakarta.persistence.Id
 	@GeneratedValue(strategy = GenerationType.AUTO)  
 	private Long id;
 	

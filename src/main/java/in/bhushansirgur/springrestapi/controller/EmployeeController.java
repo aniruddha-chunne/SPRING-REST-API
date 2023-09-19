@@ -1,5 +1,7 @@
 package in.bhushansirgur.springrestapi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.bhushansirgur.springrestapi.model.Employee;
+import in.bhushansirgur.springrestapi.repository.EmployeeRepository;
 import in.bhushansirgur.springrestapi.service.EmployeeService;
 
 @Controller
@@ -25,6 +28,9 @@ public class EmployeeController
 {
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private EmployeeRepository eRepository;
 	
 	@Value("${app.name : Employee Tracker}")
 	private String appName;
@@ -36,9 +42,12 @@ public class EmployeeController
 	
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
 	@ResponseBody  
-	public String getEmployees()
+	public List<Employee> getEmployees()
 	{
-		return "displaying the list of employees";
+		
+		return eRepository.findAll();  
+		
+//		return findAll.toString();
 	}
 	
 	//localhost:8080/employees/34
