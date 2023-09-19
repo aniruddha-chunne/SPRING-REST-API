@@ -1,5 +1,6 @@
 package in.bhushansirgur.springrestapi.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
@@ -16,11 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.bhushansirgur.springrestapi.model.Employee;
+import in.bhushansirgur.springrestapi.service.EmployeeService;
 
 @Controller
 @RestController
 public class EmployeeController 
 {
+	@Autowired
+	private EmployeeService employeeService;
+	
 	@Value("${app.name : Employee Tracker}")
 	private String appName;
 	
@@ -53,11 +58,16 @@ public class EmployeeController
 	}
 	
 	@PostMapping("/employee")
-	public String saveEmployees(@RequestBody Employee emp)
+	public Employee saveEmployees(@RequestBody Employee emp)
 	{
 		System.out.println(emp);
 		System.out.println();
-		return "saving the employee details to the database : " + emp.getAge();
+
+//		return "saving the employee details to the database : " + emp.getAge();
+		
+		employeeService.getEmployees();
+		
+		return emp;
 	}
 	
 	@GetMapping("/version")
