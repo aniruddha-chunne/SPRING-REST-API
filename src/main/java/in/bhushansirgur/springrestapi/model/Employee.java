@@ -29,7 +29,7 @@ public class Employee {
 //	@JsonProperty("Full Name")
 	
 	@jakarta.persistence.Id
-	@GeneratedValue(strategy = GenerationType.AUTO)  
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name = "name")
@@ -51,9 +51,9 @@ public class Employee {
 		return id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+//	public void setId(Long id) {
+//		this.id = id;
+//	}
 
 	public String getName() {
 		return name;

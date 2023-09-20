@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import in.bhushansirgur.springrestapi.model.Employee;
 import in.bhushansirgur.springrestapi.repository.EmployeeRepository;
 import in.bhushansirgur.springrestapi.service.EmployeeService;
+import in.bhushansirgur.springrestapi.service.EmployeeServiceImpl;
 
 @Controller
 @RestController
@@ -31,6 +32,8 @@ public class EmployeeController
 	
 	@Autowired
 	private EmployeeRepository eRepository;
+	
+	private EmployeeServiceImpl employeeServiceImpl; 
 	
 	@Value("${app.name : Employee Tracker}")
 	private String appName;
@@ -44,9 +47,7 @@ public class EmployeeController
 	@ResponseBody  
 	public List<Employee> getEmployees()
 	{
-		
 		return eRepository.findAll();  
-		
 //		return findAll.toString();
 	}
 	
@@ -77,6 +78,30 @@ public class EmployeeController
 		employeeService.getEmployees();
 		
 		return emp;
+	}
+	
+	@PostMapping("/employeeData")
+	public Employee saveEmployeesInDatabase(@RequestBody Employee emp)
+	{
+		System.out.println(emp);
+		System.out.println();
+
+//		return "saving the employee details to the database : " + emp.getAge();
+		
+		Employee saveEmployee = employeeService.saveEmployee(emp);
+		
+		return saveEmployee;
+		
+//		{ 
+//		    "id" : 11,
+//		    "name" : "Aniruddha-20",
+//			"age" : 31,
+//			"location" : "PUNE-20",
+//			"email" : "achunne3@gmail.com-20",
+//		    "department" : "JAVA Developer-20"
+//
+//		}
+		
 	}
 	
 	@GetMapping("/version")
