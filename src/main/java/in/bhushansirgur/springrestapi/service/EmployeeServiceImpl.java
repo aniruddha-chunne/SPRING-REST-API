@@ -1,6 +1,7 @@
 package in.bhushansirgur.springrestapi.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -31,6 +32,14 @@ public class EmployeeServiceImpl implements EmployeeService
 		// TODO Auto-generated method stub
 		
 		return eRepository.save(emp);
+	}
+
+	@Override
+	public Employee findById(Long id) {
+
+		Optional<Employee> findById = eRepository.findById(id);
+//		return null;
+		return findById.get();
 	}
 
 	

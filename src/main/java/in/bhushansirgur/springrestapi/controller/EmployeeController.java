@@ -119,5 +119,11 @@ public class EmployeeController
 		return "saving the employee details to the database : " + emp.getAge();
 	}
 	
+	@GetMapping("{id}")
+	public Employee UpdateEmployees(@PathVariable ("id") Long id)
+	{
+		return employeeService.findById(id);
+	}
+	
 }
 

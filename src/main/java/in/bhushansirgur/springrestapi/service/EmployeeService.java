@@ -11,4 +11,6 @@ public interface EmployeeService
 	
 	public Employee saveEmployee(Employee emp);
 	
+	public Employee findById(Long id);
+	
 }
