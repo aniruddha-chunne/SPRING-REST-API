@@ -125,5 +125,13 @@ public class EmployeeController
 		return employeeService.findById(id);
 	}
 	
+	@DeleteMapping("{id}")
+	public String DeleteEmployees(@PathVariable ("id") Long id)
+	{
+		employeeService.delete(id);
+		
+		return "Delete a Employee with Id: " + id;
+	}
+	
 }
 

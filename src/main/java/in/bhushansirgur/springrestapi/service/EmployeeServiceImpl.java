@@ -42,6 +42,13 @@ public class EmployeeServiceImpl implements EmployeeService
 		return findById.get();
 	}
 
+	@Override
+	public void delete(Long id) {
+		
+		eRepository.deleteById(id);
+		
+	}
+
 	
 		
 }
