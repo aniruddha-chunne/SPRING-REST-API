@@ -149,5 +149,22 @@ public class EmployeeController
 		return new ResponseEntity<>("Delete a Employee with Id: " + id, HttpStatus.NO_CONTENT) ;
 	}
 	
+	@GetMapping("/findbyname/{name}")
+	public ResponseEntity<List<Employee>> getEmployeesByName(@PathVariable ("name") String name)
+	{	// Https Status  = 200 OK
+		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByName(name), HttpStatus.OK);  
+//		return findAll.toString();
+	}
+	
+	@GetMapping("/findbynameparam")
+	public ResponseEntity<List<Employee>> getEmployeesByName1(@RequestParam ("name") String name)
+	{	
+		
+		//http://localhost:8080/api/v1/findbynameparam?name=Ajinkya
+		// Https Status  = 200 OK
+		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByName(name), HttpStatus.OK);  
+//		return findAll.toString();
+	}
+	
 }
 

@@ -17,4 +17,5 @@ public interface EmployeeService
 	
 	public Employee updateEmployee(Employee employee);
 	
+	public List<Employee> getEmployeesByName(String name); 
 }
