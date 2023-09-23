@@ -125,6 +125,15 @@ public class EmployeeController
 		return employeeService.findById(id);
 	}
 	
+	@PutMapping("/updatelater/{id}")
+	public Employee UpdateEmp(@PathVariable ("id") Long id, @RequestBody Employee emp)
+	{
+		
+		emp.setId(id);
+		
+		return employeeService.updateEmployee(emp);
+	}
+	
 	@DeleteMapping("{id}")
 	public String DeleteEmployees(@PathVariable ("id") Long id)
 	{
