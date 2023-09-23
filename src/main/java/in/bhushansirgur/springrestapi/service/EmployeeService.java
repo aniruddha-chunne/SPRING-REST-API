@@ -20,4 +20,10 @@ public interface EmployeeService
 	public List<Employee> getEmployeesByName(String name);
 	
 	public List<Employee> getEmployeesByNameandLocation(String name, String Location);
+	
+	public List<Employee> getEmployeesNameContaining(String keyword);
+	
+	public List<Employee> getEmployeesByNameLike(String keyword);
+	
+	
 }

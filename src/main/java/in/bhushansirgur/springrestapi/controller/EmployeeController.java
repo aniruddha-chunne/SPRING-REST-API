@@ -175,5 +175,22 @@ public class EmployeeController
 		//	return findAll.toString();
 	}
 	
+	
+	@GetMapping("/findbynamecontaining/{keyword}")
+	public ResponseEntity<List<Employee>> getEmployeesByNameContaining(@PathVariable ("keyword") String keyword)
+	{	// Https Status  = 200 OK
+		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesNameContaining(keyword), HttpStatus.OK);  
+//		return findAll.toString();
+	}
+	
+	
+	@GetMapping("/findbynamelike/{keyword}")
+	public ResponseEntity<List<Employee>> getEmployeesByNameLike(@PathVariable ("keyword") String keyword)
+	{	// Https Status  = 200 OK
+		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByNameLike(keyword), HttpStatus.OK);  
+//		return findAll.toString();
+	}
+	
+	
 }
 

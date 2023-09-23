@@ -66,6 +66,21 @@ public class EmployeeServiceImpl implements EmployeeService
 		return eRepository.findByNameAndLocation(name, Location);
 	}
 
+	@Override
+	public List<Employee> getEmployeesNameContaining(String keyword) {
+		// TODO Auto-generated method stub
+		
+		return eRepository.findByNameContaining(keyword);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByNameLike(String keyword) {
+		// TODO Auto-generated method stub
+		return eRepository.findByNameLike("%" + keyword+ "%");
+		
+	}
+
+	
 	
 		
 }
