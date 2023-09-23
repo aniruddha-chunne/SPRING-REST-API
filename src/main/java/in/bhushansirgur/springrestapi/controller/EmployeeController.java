@@ -166,5 +166,14 @@ public class EmployeeController
 //		return findAll.toString();
 	}
 	
+	@GetMapping("/findbynameandlocationparam")
+	public ResponseEntity<List<Employee>> getEmployeesByNameAndLocation(@RequestParam ("name") String name, @RequestParam ("location") String location )
+	{	
+		//http://localhost:8080/api/v1/findbynameandlocationparam?name=aniruddha&location=nagpur
+		// Https Status  = 200 OK
+		return new ResponseEntity<List<Employee>>( employeeService.getEmployeesByNameandLocation(name, location), HttpStatus.OK);  
+		//	return findAll.toString();
+	}
+	
 }
 

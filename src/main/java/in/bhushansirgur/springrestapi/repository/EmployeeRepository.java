@@ -18,4 +18,10 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>
 
 	List<Employee> findByName(String name);
 	
+	List<Employee> findByNameAndLocation(String name, String Location);
+
+	
+	
+	
+	
 }
