@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.antlr.v4.runtime.misc.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.Email;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,14 +38,16 @@ public class Employee {
 	private Long id;
 	
 	@Column(name = "name")
+	@NotNull()
 	private String name;
 	
 	@Column(name = "age")
-	private Long age;
+	private Long age = 0L ;
 	
 	@Column(name = "location")
 	private String location;
 	
+	@jakarta.validation.constraints.Email
 	@Column(name = "email")
 	private String email;
 	
@@ -117,10 +121,10 @@ public class Employee {
 		this.department = department;
 	}
 
-	public Employee() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+		public Employee() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
 
 	@Override
 	public String toString() {

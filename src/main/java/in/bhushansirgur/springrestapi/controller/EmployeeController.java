@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import in.bhushansirgur.springrestapi.model.Employee;
 import in.bhushansirgur.springrestapi.repository.EmployeeRepository;
 import in.bhushansirgur.springrestapi.service.EmployeeService;
 import in.bhushansirgur.springrestapi.service.EmployeeServiceImpl;
+import jakarta.validation.Valid;
 
 @Controller
 @RestController
@@ -81,7 +83,7 @@ public class EmployeeController
 	}
 	
 	@PostMapping("/employeeData")
-	public Employee saveEmployeesInDatabase(@RequestBody Employee emp)
+	public Employee saveEmployeesInDatabase( @Valid  @RequestBody Employee emp)
 	{
 		System.out.println(emp);
 		System.out.println();
