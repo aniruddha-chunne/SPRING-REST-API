@@ -10,12 +10,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
+import java.util.Date;
 @Setter
 @Getter
 @ToString
@@ -46,6 +49,15 @@ public class Employee {
 	
 	@Column(name = "department")
 	private String department;
+	
+	@CreationTimestamp
+	@Column(name = "created_At",  nullable = false, updatable = false)
+	private Date createdAt;
+	
+	@UpdateTimestamp
+	@Column(name = "updated_At" )
+	private Date updatedAt;
+	
 
 	public Long getId() {
 		return id;
