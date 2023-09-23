@@ -5,6 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,9 +50,9 @@ public class EmployeeController
 	
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
 	@ResponseBody  
-	public List<Employee> getEmployees()
-	{
-		return eRepository.findAll();  
+	public ResponseEntity<List<Employee>> getEmployees()
+	{	// Https Status  = 200 OK
+		return  new ResponseEntity<List<Employee>>( eRepository.findAll(), HttpStatus.OK);  
 //		return findAll.toString();
 	}
 	
@@ -83,16 +86,17 @@ public class EmployeeController
 	}
 	
 	@PostMapping("/employeeData")
-	public Employee saveEmployeesInDatabase( @Valid  @RequestBody Employee emp)
+	public ResponseEntity<Employee> saveEmployeesInDatabase( @Valid  @RequestBody Employee emp)
 	{
 		System.out.println(emp);
 		System.out.println();
 
+		// Http Status 201 - HttpStatus.CREATED
 //		return "saving the employee details to the database : " + emp.getAge();
 		
 		Employee saveEmployee = employeeService.saveEmployee(emp);
 		
-		return saveEmployee;
+		return  new ResponseEntity<>(saveEmployee, HttpStatus.CREATED);
 		
 //		{ 
 //		    "id" : 11,
@@ -128,20 +132,21 @@ public class EmployeeController
 	}
 	
 	@PutMapping("/updatelater/{id}")
-	public Employee UpdateEmp(@PathVariable ("id") Long id, @RequestBody Employee emp)
+	public ResponseEntity<Employee> UpdateEmp(@PathVariable ("id") Long id, @RequestBody Employee emp)
 	{
-		
 		emp.setId(id);
-		
-		return employeeService.updateEmployee(emp);
+		return new ResponseEntity<Employee> (employeeService.updateEmployee(emp), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("{id}")
-	public String DeleteEmployees(@PathVariable ("id") Long id)
+	public ResponseEntity<String> DeleteEmployees(@PathVariable ("id") Long id)
 	{
+		
+		// Http Status 204 - HttpStatus.NO_Content 
+		
 		employeeService.delete(id);
 		
-		return "Delete a Employee with Id: " + id;
+		return new ResponseEntity<>("Delete a Employee with Id: " + id, HttpStatus.NO_CONTENT) ;
 	}
 	
 }
