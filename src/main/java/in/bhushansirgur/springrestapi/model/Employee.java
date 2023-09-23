@@ -38,7 +38,7 @@ public class Employee {
 	private Long id;
 	
 	@Column(name = "name")
-	@NotNull()
+	@NotNull("name should not be null ")
 	private String name;
 	
 	@Column(name = "age")
