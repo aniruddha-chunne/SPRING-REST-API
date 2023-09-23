@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -23,9 +25,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import in.bhushansirgur.springrestapi.model.Employee;
+import in.bhushansirgur.springrestapi.repository.EmployeePaginingRepository;
 import in.bhushansirgur.springrestapi.repository.EmployeeRepository;
 import in.bhushansirgur.springrestapi.service.EmployeeService;
 import in.bhushansirgur.springrestapi.service.EmployeeServiceImpl;
+import in.bhushansirgur.springrestapi.service.EmployeeServicePagingImpl;
 import jakarta.validation.Valid;
 
 @Controller
@@ -37,6 +41,12 @@ public class EmployeeController
 	
 	@Autowired
 	private EmployeeRepository eRepository;
+	
+	@Autowired
+	private EmployeePaginingRepository ePagingRepository;
+	
+	@Autowired
+	private EmployeeServicePagingImpl eServicePagingImpl;
 	
 	private EmployeeServiceImpl employeeServiceImpl; 
 	
@@ -188,6 +198,20 @@ public class EmployeeController
 	public ResponseEntity<List<Employee>> getEmployeesByNameLike(@PathVariable ("keyword") String keyword)
 	{	// Https Status  = 200 OK
 		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByNameLike(keyword), HttpStatus.OK);  
+//		return findAll.toString();
+	}
+	
+	@GetMapping("/findAllPagination/{pageNumber}/{pageSize}")
+	public ResponseEntity<List<Employee>> getEmployeesByPagination(@PathVariable ("pageNumber") int pageNumber, @PathVariable ("pageSize") int pageSize)
+	{	// Https Status  = 200 OK
+		
+		System.out.println("pagenumber === " + pageNumber);
+		
+		Pageable pages = PageRequest.of(pageNumber, pageSize);
+		
+		return new ResponseEntity<List<Employee>>( ePagingRepository.findAll(pages).toList(), HttpStatus.OK);
+		
+//		return new ResponseEntity<List<Employee>>( eServicePagingImpl.findAllEmployeeByPaging(pageNumber, pageSize), HttpStatus.OK);  
 //		return findAll.toString();
 	}
 	
