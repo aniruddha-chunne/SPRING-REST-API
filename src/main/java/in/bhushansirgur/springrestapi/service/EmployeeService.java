@@ -24,6 +24,7 @@ public interface EmployeeService
 	public List<Employee> getEmployeesNameContaining(String keyword);
 	
 	public List<Employee> getEmployeesByNameLike(String keyword);
-	
-	
+
+	public List<Employee> getEmployeesByNameORLocation(String name, String Location);
+
 }

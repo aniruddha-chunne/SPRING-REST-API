@@ -121,10 +121,10 @@ public class Employee {
 		this.department = department;
 	}
 
-		public Employee() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
+//		public Employee() {
+//			super();
+//			// TODO Auto-generated constructor stub
+//		}
 
 	@Override
 	public String toString() {

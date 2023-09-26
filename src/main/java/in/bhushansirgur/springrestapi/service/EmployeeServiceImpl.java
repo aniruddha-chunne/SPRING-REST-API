@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import in.bhushansirgur.springrestapi.model.Employee;
@@ -80,7 +79,17 @@ public class EmployeeServiceImpl implements EmployeeService
 		
 	}
 
-	
-	
-		
+	@Override
+	public List<Employee> getEmployeesByNameORLocation(String name, String Location) {
+
+		System.out.println(name + "2");
+		System.out.println(Location);
+
+		System.out.println("value:" + eRepository.getEmployeesByNameOrLocation(name, Location));
+
+
+		return eRepository.getEmployeesByNameOrLocation(name, Location);
+	}
+
+
 }

@@ -160,12 +160,27 @@ public class EmployeeController
 	}
 	
 	@GetMapping("/findbyname/{name}")
-	public ResponseEntity<List<Employee>> getEmployeesByName(@PathVariable ("name") String name)
+	public ResponseEntity<List<Employee>> getEmployeesByName(@PathVariable ("name") String name )
 	{	// Https Status  = 200 OK
 		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByName(name), HttpStatus.OK);  
 //		return findAll.toString();
 	}
-	
+
+
+	@GetMapping("/employees/{name}/{location}")
+	public ResponseEntity<List<Employee>> getEmployeesByNameOrLocation(@PathVariable ( "name" ) String name, @PathVariable ( "location" ) String location)
+	{	// Https Status  = 200 OK
+
+		System.out.println(name + "1");
+		System.out.println(location);
+
+		System.out.println("EmployeeLocation");
+
+		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByNameORLocation(name, location), HttpStatus.OK);
+//		return findAll.toString();
+	}
+
+
 	@GetMapping("/findbynameparam")
 	public ResponseEntity<List<Employee>> getEmployeesByName1(@RequestParam ("name") String name)
 	{	
