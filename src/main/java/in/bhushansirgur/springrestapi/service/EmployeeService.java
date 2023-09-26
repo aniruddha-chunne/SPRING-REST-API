@@ -27,4 +27,6 @@ public interface EmployeeService
 
 	public List<Employee> getEmployeesByNameORLocation(String name, String Location);
 
+	public String deleteEmployees(String name);
+
 }

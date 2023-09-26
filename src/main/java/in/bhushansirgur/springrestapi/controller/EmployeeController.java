@@ -108,7 +108,7 @@ public class EmployeeController
 		
 		return  new ResponseEntity<>(saveEmployee, HttpStatus.CREATED);
 		
-//		{ 
+//		{
 //		    "id" : 11,
 //		    "name" : "Aniruddha-20",
 //			"age" : 31,
@@ -180,6 +180,20 @@ public class EmployeeController
 //		return findAll.toString();
 	}
 
+
+	@DeleteMapping("/empdelete/{name}")
+	public ResponseEntity<String> deleteEmployeesByName(@PathVariable ( "name" ) String name)
+	{	// Https Status  = 200 OK
+
+		System.out.println(name + "1");
+
+		System.out.println("EmployeeLocation");
+
+		System.out.println(employeeService.deleteEmployees(name));
+
+		return  new ResponseEntity<String>( employeeService.deleteEmployees(name), HttpStatus.NO_CONTENT);
+
+	}
 
 	@GetMapping("/findbynameparam")
 	public ResponseEntity<List<Employee>> getEmployeesByName1(@RequestParam ("name") String name)

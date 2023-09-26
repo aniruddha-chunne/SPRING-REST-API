@@ -3,6 +3,7 @@ package in.bhushansirgur.springrestapi.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
@@ -28,9 +29,12 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>
 	
 	List<Employee> findByNameLike(String name);
 
-//	@Query("from Employee WHERE Employee.name = :name or Employee.location = :location")
-	@Query( value = "from Employee WHERE name = :name or location = :location ")
+	@Query("from Employee WHERE name = :name or location = :location")
 	List<Employee> getEmployeesByNameOrLocation(@Param("name") String name, @Param("location") String location);
+
+	@Modifying
+	@Query("Delete from Employee WHERE name = :name" )
+	Integer deleteEmployeesByName(  String name);
 
 
 }

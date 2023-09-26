@@ -91,5 +91,13 @@ public class EmployeeServiceImpl implements EmployeeService
 		return eRepository.getEmployeesByNameOrLocation(name, Location);
 	}
 
+	@Override
+	public String deleteEmployees(String name) {
+
+		int value = eRepository.deleteEmployeesByName(name);
+
+		return "Number of records deleted are : " + value;
+	}
+
 
 }
