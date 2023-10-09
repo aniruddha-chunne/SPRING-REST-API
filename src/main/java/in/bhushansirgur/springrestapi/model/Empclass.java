@@ -3,6 +3,10 @@ package in.bhushansirgur.springrestapi.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import in.bhushansirgur.springrestapi.request.EmpclassRequest;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,8 +32,7 @@ import java.util.Date;
 @NoArgsConstructor
 //@Entity()
 @jakarta.persistence.Entity()
-@Table(name = "tbl_employee")
-public class Employee {
+public class Empclass {
 
 //	@JsonProperty("Full Name")
 	
@@ -37,31 +40,23 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name")
-	@NotNull()
 	private String name;
 	
-	@Column(name = "age")
-	private Long age = 0L ;
+	@JoinColumn(name = "department_id")
+	@OneToOne
+	private Department department;
+
+	public Empclass(EmpclassRequest req) 
+	{
+			this.name = req.getName();
+			
+	}
 	
-	@Column(name = "location")
-	private String location;
-	
-	@jakarta.validation.constraints.Email
-	@Column(name = "email")
-	private String email;
-	
-	@Column(name = "department")
-	private String department;
-	
-	@CreationTimestamp
-	@Column(name = "created_At",  nullable = false, updatable = false)
-	private Date createdAt;
-	
-	@UpdateTimestamp
-	@Column(name = "updated_At" )
-	private Date updatedAt;
-	
+	public Empclass(Department dep) 
+	{
+			this.department=  dep;
+			
+	}
 
 	public Long getId() {
 		return id;
@@ -79,58 +74,20 @@ public class Employee {
 		this.name = name;
 	}
 
-	public Long getAge() {
-		return age;
-	}
-
-	public void setAge(Long age) {
-		this.age = age;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getDepartment() {
+	public Department getDepartment() {
 		return department;
 	}
 
-	public void setDepartment(String department) {
+	public void setDepartment(Department department) {
 		this.department = department;
 	}
 
-	public Employee(Long id, String name, Long age, String location, String email, String department) {
+	public Empclass() {
 		super();
-		this.id = id;
-		this.name = name;
-		this.age = age;
-		this.location = location;
-		this.email = email;
-		this.department = department;
 	}
-
-		public Employee() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
-
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", age=" + age + ", location=" + location + ", email=" + email
-				+ ", department=" + department + "]";
-	}
+	
+	
+	
 	
 
 }
