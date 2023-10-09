@@ -48,6 +48,8 @@ public class EmpclassController
 	@Autowired
 	private EmpclassRepository empClassRepository;
 	
+	
+	
 //	@Autowired
 //	private EmployeeService employeeService;
 //	
@@ -189,18 +191,13 @@ public class EmpclassController
 //	}
 //
 //
-//	@GetMapping("/employees/{name}/{location}")
-//	public ResponseEntity<List<Employee>> getEmployeesByNameOrLocation(@PathVariable ( "name" ) String name, @PathVariable ( "location" ) String location)
-//	{	// Https Status  = 200 OK
-//
-//		System.out.println(name + "1");
-//		System.out.println(location);
-//
-//		System.out.println("EmployeeLocation");
-//
-//		return  new ResponseEntity<List<Employee>>( employeeService.getEmployeesByNameORLocation(name, location), HttpStatus.OK);
-////		return findAll.toString();
-//	}
+	@GetMapping("/empclasslist")
+	public ResponseEntity<List<Empclass>> getEmployeesByDepartment()
+	{	// Https Status  = 200 OK
+
+		return  new ResponseEntity<List<Empclass>>( empClassRepository.findByDepartmentName("department"), HttpStatus.OK);
+
+	}
 //
 //
 //	@DeleteMapping("/empdelete/{name}")

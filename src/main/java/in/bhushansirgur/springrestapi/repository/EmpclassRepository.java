@@ -12,5 +12,5 @@ import in.bhushansirgur.springrestapi.model.Employee;
 @Repository
 public interface EmpclassRepository extends JpaRepository<Empclass, Long>
 {
-
+		List<Empclass> findByDepartmentName(String name);
 }
